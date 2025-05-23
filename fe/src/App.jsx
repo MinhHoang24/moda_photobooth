@@ -74,7 +74,7 @@ export default function App() {
       polaroidCtx.fillStyle = '#333';
       polaroidCtx.font = '20px Arial';
       polaroidCtx.textAlign = 'center';
-      polaroidCtx.fillText('Polaroid Photo', newWidth / 2, newHeight - border);
+      polaroidCtx.fillText('Polaroid Moda Photo', newWidth / 2, newHeight - border);
 
       const dataURL = polaroidCanvas.toDataURL('image/png');
       setPhoto(dataURL);
@@ -92,16 +92,26 @@ export default function App() {
   // Hàm ghép ảnh photobooth
   function mergePhotos(photoArray, w, h, style) {
     return new Promise((resolve) => {
+      const borderSize = 40; // độ rộng viền trắng
+
+      // Tính kích thước canvas tổng thể bao gồm viền trắng
+      let canvasWidth, canvasHeight;
+      if (style === 'grid') {
+        canvasWidth = w * 2 + borderSize * 2;
+        canvasHeight = h * 2 + borderSize * 2;
+      } else {
+        canvasWidth = w + borderSize * 2;
+        canvasHeight = h * 4 + borderSize * 2;
+      }
+
       const canvas = document.createElement('canvas');
+      canvas.width = canvasWidth;
+      canvas.height = canvasHeight;
       const ctx = canvas.getContext('2d');
 
-      if (style === 'grid') {
-        canvas.width = w * 2;
-        canvas.height = h * 2;
-      } else {
-        canvas.width = w;
-        canvas.height = h * 4;
-      }
+      // Vẽ nền viền trắng
+      ctx.fillStyle = 'white';
+      ctx.fillRect(0, 0, canvasWidth, canvasHeight);
 
       const frames = frameImages;
 
@@ -127,15 +137,29 @@ export default function App() {
             loadedCount++;
 
             if (loadedCount === photoArray.length) {
+              // Vẽ từng ảnh nhỏ đã có viền lên canvas lớn (cách đều với borderSize)
               photosWithFrames.forEach((smallCvs, idx) => {
+                let x, y;
                 if (style === 'grid') {
-                  const x = (idx % 2) * w;
-                  const y = Math.floor(idx / 2) * h;
-                  ctx.drawImage(smallCvs, x, y, w, h);
+                  x = borderSize + (idx % 2) * w;
+                  y = borderSize + Math.floor(idx / 2) * h;
                 } else {
-                  ctx.drawImage(smallCvs, 0, idx * h, w, h);
+                  x = borderSize;
+                  y = borderSize + idx * h;
                 }
+                ctx.drawImage(smallCvs, x, y, w, h);
               });
+
+              // Vẽ dòng chữ nhỏ ở viền trắng dưới cùng, căn giữa
+              const text = 'moda photo';
+              ctx.fillStyle = '#666';
+              ctx.font = '18px Arial';
+              ctx.textAlign = 'center';
+              ctx.textBaseline = 'bottom';
+
+              // Vị trí chữ: nằm giữa chiều ngang, ở ngay trên mép dưới canvas (cách đáy 10px)
+              ctx.fillText(text, canvasWidth / 2, canvasHeight - 10);
+
               resolve(canvas.toDataURL('image/png'));
             }
           };
@@ -149,6 +173,7 @@ export default function App() {
       });
     });
   }
+
 
   // Hàm chụp ảnh Photobooth
   async function takePhotobooth() {
@@ -219,7 +244,7 @@ export default function App() {
       </div>
 
       <footer className="app-footer">
-        minh hoang
+        moda photobooth and polaroid
       </footer>
     </>
   );
