@@ -1,0 +1,53 @@
+# Node modules thư mục (cả frontend & backend)
+node_modules/
+
+# Thư mục build frontend React (nếu bạn build ra folder 'build')
+build/
+
+# Env file chứa biến môi trường bí mật
+.env
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Cache thư mục
+.cache/
+.pnp/
+.pnp.js
+
+# Thư mục tạm (temp)
+tmp/
+temp/
+
+# Các file hệ thống OS
+.DS_Store
+Thumbs.db
+
+# Thư mục và file IDE (Visual Studio Code, WebStorm...)
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Files xuất hiện khi debug hoặc crash
+*.stackdump
+
+# Nếu bạn có folder chứa ảnh hoặc media tạm không muốn đẩy
+uploads/
+media/
+
+# Nếu dùng Docker
+docker-compose.override.yml
+
+# Các file test coverage (nếu có)
+coverage/
+
+# Các thư mục output khác
+dist/
+out/

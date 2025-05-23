@@ -1,0 +1,183 @@
+/* Container tổng thể */
+.container {
+  display: flex;
+  max-width: 80vw;
+  margin: 24px auto;
+  gap: 32px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: #222;
+  background: #f9f9f9;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.05);
+}
+
+/* Bên trái: preview ảnh */
+.left-side {
+  flex: 1;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgb(0 0 0 / 0.08);
+  min-width: 360px;
+  max-height: 85vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.left-side h3 {
+  margin-bottom: 16px;
+  font-weight: 600;
+  font-size: 1.5rem;
+  border-bottom: 1px solid #ddd;
+  width: 100%;
+  padding-bottom: 8px;
+  color: #111;
+}
+
+/* Ảnh preview */
+.result-photo {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+  transition: transform 0.2s ease;
+  object-fit: contain;
+}
+
+.result-photo:hover {
+  transform: scale(1.03);
+}
+
+/* Link tải ảnh */
+.download-link {
+  margin-top: 14px;
+  font-weight: 500;
+  color: #007acc;
+  text-decoration: none;
+  border-bottom: 1.5px solid transparent;
+  transition: border-color 0.25s ease;
+}
+
+.download-link:hover {
+  border-color: #007acc;
+}
+
+/* Bên phải: camera và controls */
+.right-side {
+  flex: 1;
+  padding: 20px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgb(0 0 0 / 0.08);
+  min-width: 360px;
+  max-height: 85vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.right-side h2 {
+  font-weight: 700;
+  font-size: 1.6rem;
+  margin-bottom: 12px;
+  color: #222;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 6px;
+}
+
+/* Nhóm lựa chọn (mode, style, frame) */
+.mode-select label,
+.style-select label,
+.frame-select label {
+  margin-right: 16px;
+  cursor: pointer;
+  font-weight: 500;
+  color: #333;
+  user-select: none;
+  transition: color 0.2s ease;
+}
+
+.mode-select label:hover,
+.style-select label:hover,
+.frame-select label:hover {
+  color: #007acc;
+}
+
+/* Video + khung */
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  padding-top: 56.25%; /* 16:9 ratio */
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000000cc;
+  box-shadow: 0 6px 20px rgb(0 0 0 / 0.1);
+}
+
+video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scaleX(-1);
+  border-radius: 12px;
+  z-index: 1;
+  filter: brightness(0.95);
+  transition: filter 0.3s ease;
+}
+
+video:hover {
+  filter: brightness(1);
+}
+
+/* Khung ảnh overlay */
+.frame-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+  z-index: 2;
+  filter: drop-shadow(0 0 3px rgb(0 0 0 / 0.25));
+}
+
+/* Nút chụp */
+.button {
+  background-color: #007acc;
+  border: none;
+  color: white;
+  font-weight: 700;
+  font-size: 1.15rem;
+  padding: 12px 28px;
+  border-radius: 36px;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgb(0 122 204 / 0.4);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  user-select: none;
+}
+
+.button:hover {
+  background-color: #005fa3;
+  box-shadow: 0 6px 20px rgb(0 95 163 / 0.6);
+}
+
+/* Thông báo trạng thái */
+.message {
+  font-weight: 500;
+  font-size: 1rem;
+  color: #444;
+  min-height: 24px;
+  font-style: italic;
+  user-select: none;
+  margin-top: 8px;
+}
