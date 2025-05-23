@@ -6,7 +6,9 @@ const app = express();
 app.use(express.json({ limit: '10mb' })); // để nhận ảnh base64
 
 const cors = require('cors');
-app.use(cors());
+app.use(cors({
+  origin: 'https://moda-photobooth.onrender.com/'
+}));
 
 // API nhận ảnh từ frontend và lưu file
 app.post('/upload', (req, res) => {

@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import CameraView from './components/CameraView';
 import CaptureControls from './components/CaptureControls';
 import PhotoPreview from './components/PhotoPreview';
+import Header from './components/Header/Header';
 import './CameraApp.css';
 
 export default function App() {
@@ -195,23 +196,26 @@ export default function App() {
   }
 
   return (
-    <div className="container">
-      <div className="left-side">
-        <PhotoPreview photo={photo} mode={mode} />
+    <>
+      <Header />
+      <div className="container">
+        <div className="right-side">
+          <CaptureControls
+            mode={mode}
+            setMode={setMode}
+            photoboothStyle={photoboothStyle}
+            setPhotoboothStyle={setPhotoboothStyle}
+            selectedFrame={selectedFrame}
+            setSelectedFrame={setSelectedFrame}
+            onCapture={onCapture}
+          />
+          <CameraView videoRef={videoRef} selectedFrame={mode === 'polaroid' ? selectedFrame : frameImages[frameIndex]} />
+          <p className="message">{message}</p>
+        </div>
+        <div className="left-side">
+          <PhotoPreview photo={photo} mode={mode} />
+        </div>
       </div>
-      <div className="right-side">
-        <CaptureControls
-          mode={mode}
-          setMode={setMode}
-          photoboothStyle={photoboothStyle}
-          setPhotoboothStyle={setPhotoboothStyle}
-          selectedFrame={selectedFrame}
-          setSelectedFrame={setSelectedFrame}
-          onCapture={onCapture}
-        />
-        <CameraView videoRef={videoRef} selectedFrame={mode === 'polaroid' ? selectedFrame : frameImages[frameIndex]} />
-        <p className="message">{message}</p>
-      </div>
-    </div>
+    </>
   );
 }
