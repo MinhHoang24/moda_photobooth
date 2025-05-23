@@ -36,7 +36,7 @@ app.post('/upload', (req, res) => {
 // Phục vụ ảnh tĩnh từ thư mục uploads
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-const port = 3001;
-app.listen(port, () => {
-  console.log(`Server chạy trên cổng ${port}`);
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
