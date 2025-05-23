@@ -5,7 +5,7 @@ export default function PhotoPreview({ photo, mode }) {
 
   return (
     <>
-      <h3>Ảnh sau khi chụp</h3>
+      <h3>Ảnh của bạn</h3>
       <img src={photo} alt="Ảnh chụp" className="result-photo" />
       <a href={photo} download={`${mode}_photo.png`} className="download-link">
         Tải ảnh về

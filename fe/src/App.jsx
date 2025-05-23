@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import CameraView from './components/CameraView';
-import CaptureControls from './components/CaptureControls';
+import CaptureControls from './components/CaptureControls/CaptureControls';
 import PhotoPreview from './components/PhotoPreview';
 import Header from './components/Header/Header';
 import './CameraApp.css';
@@ -198,6 +198,7 @@ export default function App() {
   return (
     <>
       <Header />
+
       <div className="container">
         <div className="right-side">
           <CaptureControls
@@ -216,6 +217,10 @@ export default function App() {
           <PhotoPreview photo={photo} mode={mode} />
         </div>
       </div>
+
+      <footer className="app-footer">
+        minh hoang
+      </footer>
     </>
   );
 }

@@ -2,8 +2,8 @@
 .container {
   display: flex;
   max-width: 90vw;
-  height: 90vh; /* Cố định chiều cao để 2 bên cân bằng */
-  margin: 24px auto;
+  height: 114vh;
+  margin: auto;
   gap: 32px;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   color: #222;
@@ -12,6 +12,7 @@
   border-radius: 12px;
   box-shadow: 0 4px 12px rgb(0 0 0 / 0.05);
   box-sizing: border-box;
+  overflow: hidden;
 }
 
 /* Bên trái: preview ảnh */
@@ -31,10 +32,11 @@
 }
 
 .left-side h3 {
-  margin-bottom: 16px;
+  margin-top: 0px;
   font-weight: 600;
   font-size: 1.5rem;
   border-bottom: 1px solid #ddd;
+  text-align: center;
   width: 100%;
   padding-bottom: 8px;
   color: #111;
@@ -42,12 +44,15 @@
 
 /* Ảnh preview */
 .result-photo {
+  background-color: rgba(0, 0, 0, 0.09);
   width: 100%;
   max-width: 420px;
+  height: 100vh;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
   transition: transform 0.2s ease;
   object-fit: contain;
+  overflow: hidden;
 }
 
 .result-photo:hover {
@@ -75,13 +80,11 @@
   background: white;
   border-radius: 12px;
   box-shadow: 0 4px 10px rgb(0 0 0 / 0.08);
-  min-width: 360px;
-  max-height: 100%;
-  overflow-y: auto;
   display: flex;
   flex-direction: column;
-  gap: 16px;
   box-sizing: border-box;
+  position: relative;
+  overflow: hidden;
 }
 
 /* Tiêu đề */
@@ -94,94 +97,11 @@
   padding-bottom: 6px;
 }
 
-/* Nhóm lựa chọn (mode, style, frame) */
-.mode-select label,
-.style-select label,
-.frame-select label {
-  position: relative;
-  padding-left: 32px;
-  margin-right: 20px;
-  cursor: pointer;
-  font-weight: 600;
-  color: #333;
-  user-select: none;
-  display: inline-flex;
-  align-items: center;
-  font-size: 1rem;
-  transition: color 0.3s ease;
-}
-
-.mode-select label:hover,
-.style-select label:hover,
-.frame-select label:hover {
-  color: #007acc;
-}
-
-/* Ẩn radio mặc định */
-.mode-select input[type="radio"],
-.style-select input[type="radio"],
-.frame-select input[type="radio"] {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
-}
-
-/* Custom radio */
-.mode-select label::before,
-.style-select label::before,
-.frame-select label::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 20px;
-  height: 20px;
-  border: 2px solid #ccc;
-  border-radius: 50%;
-  background-color: white;
-  box-sizing: border-box;
-  transition: border-color 0.3s ease, background-color 0.3s ease;
-}
-
-/* Khi radio được chọn */
-.mode-select input[type="radio"]:checked + label::before,
-.style-select input[type="radio"]:checked + label::before,
-.frame-select input[type="radio"]:checked + label::before {
-  border-color: #007acc;
-  background-color: #007acc;
-}
-
-/* Dấu chấm bên trong radio */
-.mode-select label::after,
-.style-select label::after,
-.frame-select label::after {
-  content: "";
-  position: absolute;
-  left: 6px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background-color: white;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.mode-select input[type="radio"]:checked + label::after,
-.style-select input[type="radio"]:checked + label::after,
-.frame-select input[type="radio"]:checked + label::after {
-  opacity: 1;
-}
-
 /* Video + khung */
 .video-wrapper {
   position: relative;
   width: 100%;
-  padding-top: 56.25%; /* 16:9 ratio */
+  padding-top: 75%; 
   border-radius: 12px;
   overflow: hidden;
   background: #000000cc;
@@ -205,6 +125,16 @@ video {
 
 video:hover {
   filter: brightness(1);
+}
+
+/* Nút chụp đặt bên dưới video, căn giữa */
+.capture-button-wrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: -50px; /* kéo nút lên gần video */
+  z-index: 10;
 }
 
 /* Khung ảnh overlay */
@@ -234,10 +164,9 @@ video:hover {
   box-shadow: 0 6px 20px rgb(0 122 204 / 0.5);
   transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.15s ease;
   user-select: none;
-  align-self: flex-start;
-  margin-top: 12px;
   display: inline-block;
   text-align: center;
+  min-width: 160px;
 }
 
 .button:hover {
@@ -261,4 +190,19 @@ video:hover {
   user-select: none;
   margin-top: 8px;
   align-self: flex-start;
+}
+
+.app-footer {
+  width: 100vw;
+  margin: auto;
+  padding: 12px 0;
+  text-align: center;
+  font-size: 1rem;
+  background-color: #007acc;
+  color: #fff;
+  font-weight: 500;
+  border-top: 1px solid #ddd;
+  user-select: none;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  margin-top: 16px; /* cách container 1 chút */
 }
